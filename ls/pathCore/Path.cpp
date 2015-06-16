@@ -15,13 +15,22 @@ std::string Path::getPath() const {
 std::string Path::getDirectory() const {
     auto lastSeparatePos = findLastSeparate();
     if (lastSeparatePos != std::string::npos) {
-        m_path.substr(0, lastSeparatePos);
+        return m_path.substr(0, lastSeparatePos);
     } else {
         return "";
     }
 }
 
+std::string Path::getFilename() const {
+    auto lastSeparatePos = findLastSeparate();
+    if (lastSeparatePos != std::string::npos && lastSeparatePos+1 < m_path.length()) {
+        return m_path.substr(lastSeparatePos + 1);
+    } else {
+        return "";
+    }
+}
 //private
 size_t Path::findLastSeparate() const {
     return m_path.rfind('/');
 }
+

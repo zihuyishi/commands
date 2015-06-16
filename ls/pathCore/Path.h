@@ -23,8 +23,9 @@ public:
 
 public:
     //component methods
-    std::string getDirectory() const;
 
+    std::string getDirectory() const;
+    std::string getFilename() const;
 private:
     /**
      * 寻找最后一个路径分隔符位置

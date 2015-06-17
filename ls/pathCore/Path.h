@@ -16,11 +16,21 @@ public:
     {}
     ~Path() {}
 
+    Path(const Path& path) {
+        m_path = path.m_path;
+    }
+
 public:
     //setter && getter
     void setPath(std::string path);
     std::string getPath() const;
-
+    Path& operator=(const Path& path) {
+        m_path = path.m_path;
+        return *this;
+    }
+    bool operator==(const Path& path) const {
+        return m_path == path.m_path;
+    }
 public:
     //component methods
 

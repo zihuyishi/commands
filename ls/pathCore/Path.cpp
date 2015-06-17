@@ -17,7 +17,7 @@ std::string Path::getDirectory() const {
     if (lastSeparatePos != std::string::npos) {
         return m_path.substr(0, lastSeparatePos);
     } else {
-        return "";
+        return m_path;
     }
 }
 
@@ -26,7 +26,7 @@ std::string Path::getFilename() const {
     if (lastSeparatePos != std::string::npos && lastSeparatePos+1 < m_path.length()) {
         return m_path.substr(lastSeparatePos + 1);
     } else {
-        return "";
+        return m_path;
     }
 }
 //private

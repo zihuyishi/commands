@@ -6,7 +6,7 @@
 using namespace std;
 using namespace cmd;
 
-int main(int argc, char **argv) {
+int main(int, char **) {
     auto curPath = sys::dir_getCurrentPath();
     auto curDir = sys::dir_createWithPath(curPath);
     auto files = curDir->getSubfiles();

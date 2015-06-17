@@ -6,6 +6,7 @@
 #define LS_DIR_H
 #include <string>
 #include <vector>
+#include "Path.h"
 
 namespace cmd {
 namespace sys {
@@ -15,7 +16,7 @@ class Dir {
 public:
     virtual ~Dir() {}
 public:
-    virtual auto getSubfiles() -> std::vector<std::string> = 0;
+    virtual auto getSubfiles() -> std::vector<Path> = 0;
 };
 
 Dir * dir_createWithPath(std::string filePath);

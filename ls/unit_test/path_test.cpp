@@ -4,6 +4,7 @@
 #include "../pathCore/Path.h"
 #include <gtest/gtest.h>
 namespace {
+    using namespace cmd;
     class PathTest : public ::testing::Test {
     protected:
         PathTest() {

@@ -3,7 +3,7 @@
 //
 
 #include "Path.h"
-
+namespace cmd {
 void Path::setPath(std::string path) {
     m_path = path;
 }
@@ -23,14 +23,15 @@ std::string Path::getDirectory() const {
 
 std::string Path::getFilename() const {
     auto lastSeparatePos = findLastSeparate();
-    if (lastSeparatePos != std::string::npos && lastSeparatePos+1 < m_path.length()) {
+    if (lastSeparatePos != std::string::npos && lastSeparatePos + 1 < m_path.length()) {
         return m_path.substr(lastSeparatePos + 1);
     } else {
         return m_path;
     }
 }
+
 //private
 size_t Path::findLastSeparate() const {
     return m_path.rfind('/');
 }
-
+}

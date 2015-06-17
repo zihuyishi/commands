@@ -4,6 +4,7 @@
 
 #include "Path.h"
 namespace cmd {
+namespace sys {
 void Path::setPath(std::string path) {
     m_path = path;
 }
@@ -33,5 +34,6 @@ std::string Path::getFilename() const {
 //private
 size_t Path::findLastSeparate() const {
     return m_path.rfind('/');
+}
 }
 }

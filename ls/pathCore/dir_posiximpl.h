@@ -19,6 +19,9 @@ public:
     dir_posiximpl(std::string filePath) :
         m_root(filePath), m_dir(nullptr)
     {
+        if (m_root[m_root.length()-1] == '/') {
+            m_root = m_root.substr(0, m_root.length()-1);
+        }
         m_dir = opendir(m_root.c_str());
     }
     virtual ~dir_posiximpl()
@@ -33,11 +36,13 @@ public:
     }
 public:
     //dir impl
-    virtual auto getSubfiles() -> std::vector<std::string> {
-        std::vector<std::string> files;
+    virtual auto getSubfiles() -> std::vector<Path> {
+        std::vector<Path> files;
         dirent *file = nullptr;
         while ((file = readdir(m_dir)) != nullptr) {
-            std::string filePath = file->d_name;
+            bool isDir = file->d_type == DT_DIR;
+            std::string fullPath = m_root + "/" + file->d_name;
+            Path filePath(fullPath, isDir);
             files.push_back(filePath);
         }
         return files;

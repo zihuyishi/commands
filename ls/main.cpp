@@ -9,9 +9,9 @@ using namespace cmd;
 int main(int argc, char **argv) {
     auto curPath = sys::dir_getCurrentPath();
     auto curDir = sys::dir_createWithPath(curPath);
-    vector<string> files = curDir->getSubfiles();
+    auto files = curDir->getSubfiles();
     for (auto iter = files.begin(); iter != files.end(); iter++) {
-        std::cout << *iter << "\t";
+        std::cout << iter->getFilename() << "\t";
     }
     std::cout << std::endl;
     return 0;

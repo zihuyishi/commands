@@ -8,14 +8,16 @@
 #include <string>
 
 namespace cmd {
-
+namespace sys {
 class Path {
-    std::string m_path;
+    std::string     m_path;
+    bool            m_isDir;
 public:
     Path() { }
 
-    Path(std::string path) :
-            m_path(path) { }
+    Path(std::string path, bool isDirectory) :
+            m_path(path), m_isDir(isDirectory)
+    { }
 
     ~Path() { }
 
@@ -47,11 +49,12 @@ public:
 
 private:
     /**
- * 寻找最后一个路径分隔符位置
- * @return 找到返回位置；没找到返回std::string::npos
- */
+* 寻找最后一个路径分隔符位置
+* @return 找到返回位置；没找到返回std::string::npos
+*/
     size_t findLastSeparate() const;
 };
-}
 
+}
+}
 #endif //LS_PATH_H

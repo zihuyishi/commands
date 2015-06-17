@@ -4,12 +4,12 @@
 #include "../pathCore/Path.h"
 #include <gtest/gtest.h>
 namespace {
-    using namespace cmd;
+    using namespace cmd::sys;
     class PathTest : public ::testing::Test {
     protected:
         PathTest() {
-            _path1 = Path("/usr/local/include/saye.cxx");
-            _path2 = Path("../a");
+            _path1 = Path("/usr/local/include/saye.cxx", false);
+            _path2 = Path("../a", false);
         }
         virtual ~PathTest() {
 

@@ -47,6 +47,10 @@ public:
 
     std::string getFilename() const;
 
+    bool isDirectory() const {
+        return m_isDir;
+    }
+
 private:
     /**
 * 寻找最后一个路径分隔符位置

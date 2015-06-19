@@ -25,6 +25,12 @@ target_link_libraries(ls pathCore)
 set(GMOCK_DIR "../thirdpart/gmock-1.7.0" CACHE PATH
     "The path to the GoogleMock test framework.")
 
+if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
+    option(gtest_force_shared_crt
+            "Use shared (DLL) run-time lib even when Google Test is built as static lib."
+            ON)
+endif()
+
 add_subdirectory(${GMOCK_DIR} ${CMAKE_BINARY_DIR}/gmock)
 
 include_directories(SYSTEM ${GMOCK_DIR}/gtest/include

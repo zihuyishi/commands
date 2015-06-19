@@ -10,16 +10,17 @@ int main(int, char **) {
     auto curPath = sys::dir_getCurrentPath();
     auto curDir = sys::dir_createWithPath(curPath);
     auto files = curDir->getSubfiles();
-    std::string dirColor = "\033[134m";
-    std::string fileColor = "\033[133m";
+    std::string dirColor = "\x1b[33m";
+    std::string fileColor = "\x1b[32m";
+    std::string restore = "\x1b[0m";
     for (auto iter = files.begin(); iter != files.end(); iter++) {
         if (iter->isDirectory()) {
-            std::cout << dirColor;
+            std::cout << dirColor << iter->getFilename() << "\t";
         } else {
-            std::cout << fileColor;
+            std::cout << fileColor << iter->getFilename() << "\t";
         }
-        std::cout << iter->getFilename() << "\t";
     }
+    std::cout << restore;
     std::cout << std::endl;
     return 0;
 }

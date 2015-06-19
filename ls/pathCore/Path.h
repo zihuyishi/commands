@@ -12,17 +12,22 @@ namespace sys {
 class Path {
     std::string     m_path;
     bool            m_isDir;
+    char            m_separate;
 public:
     Path() { }
 
     Path(std::string path, bool isDirectory) :
             m_path(path), m_isDir(isDirectory)
-    { }
+    {
+        detectSeparateChar();
+    }
 
     ~Path() { }
 
-    Path(const Path &path) {
-        m_path = path.m_path;
+    Path(const Path &path) :
+            m_isDir(path.m_isDir)
+    {
+        setPath(path.m_path);
     }
 
 public:
@@ -32,7 +37,8 @@ public:
     std::string getPath() const;
 
     Path &operator=(const Path &path) {
-        m_path = path.m_path;
+        setPath(path.m_path);
+        m_isDir = path.m_isDir;
         return *this;
     }
 
@@ -57,6 +63,7 @@ private:
 * @return 找到返回位置；没找到返回std::string::npos
 */
     size_t findLastSeparate() const;
+    void detectSeparateChar();
 };
 
 }

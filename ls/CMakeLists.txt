@@ -16,9 +16,11 @@ add_subdirectory(pathCore)
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 
-set(SOURCE_FILES main.cpp)
-add_executable(ls ${SOURCE_FILES})
+add_executable(ls main.cpp)
 target_link_libraries(ls pathCore)
+
+# xfile exe
+add_executable(xfile xfile.cpp)
 
 # add test
 

@@ -35,6 +35,8 @@ int main(int argc, char *argv[]) {
     for (auto i = 2; i < argc; i++) {
         switch(argv[i][0]) {
             case 'a':
+                lseek(fd, 0, SEEK_END);
+            case 'w':
                 len = strlen(argv[i] + 1);
                 len = static_cast<size_t>(write(fd, argv[i] + 1, len));
                 printf("write %ld data to file.\n", (long)len);
@@ -45,10 +47,19 @@ int main(int argc, char *argv[]) {
                 printf("set offset to %lld.\n", (long long)offset);
                 break;
             case 'r':
+            case 'R':
                 len = static_cast<size_t>(atol(argv[i] + 1));
                 buffer = new char[len + 1];
                 len = static_cast<size_t>(read(fd, buffer, len));
-                printf("read %ld data, and data is :%s\n", len, buffer);
+                if (argv[i][0] == 'r') {
+                    printf("read %ld data, and data is :%s\n", len, buffer);
+                } else {
+                    printf("read %ld data, and data is :", len);
+                    for (int j = 0; j < len; j++) {
+                        printf("0x%.2x ", (uint8_t)buffer[j]);
+                    }
+                    printf("\n");
+                }
                 delete[] buffer;
                 buffer = nullptr;
                 break;
